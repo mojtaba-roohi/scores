@@ -20,6 +20,7 @@ public class RedissonConfig {
     @Bean(destroyMethod = "shutdown")
     @ConditionalOnMissingBean(RedissonClient.class)
     public RedissonClient RedissonConfig() {
+        System.out.println("score-library-connect");
         Config config = new Config();
         if (redissonProperties.isCluster()) {
             config.useClusterServers()
