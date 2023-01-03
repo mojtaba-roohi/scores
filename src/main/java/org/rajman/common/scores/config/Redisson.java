@@ -17,7 +17,7 @@ public class Redisson {
     @ConditionalOnMissingBean
     public RedissonClient Redisson(RedissonProperty redissonProperty){
         Config config=new Config();
-        System.out.println("redis-scores-connect");
+        System.out.println("scores-connect-to-redis");
         if(redissonProperty.isCluster()){
             config.useClusterServers()
                     .setPassword(redissonProperty.getPassword());
