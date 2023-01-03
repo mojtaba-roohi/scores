@@ -1,12 +1,7 @@
-package org.rajman.common.scores.config;
+package org.rajman.common.scores.model;
 
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-@ConfigurationProperties(prefix = "scores-redis")
-public class RedissonProperties {
+public class RedissonProperty {
 
     private String address;
 
@@ -15,6 +10,7 @@ public class RedissonProperties {
     private boolean cluster;
 
     private String prefix;
+
 
     public String getAddress() {
         return address;
