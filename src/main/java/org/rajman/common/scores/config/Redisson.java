@@ -2,6 +2,7 @@ package org.rajman.common.scores.config;
 
 import org.rajman.common.scores.model.RedissonProperty;
 import org.redisson.api.RedissonClient;
+import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,6 +18,7 @@ public class Redisson {
     @ConditionalOnMissingBean
     public RedissonClient Redisson(RedissonProperty redissonProperty){
         Config config=new Config();
+        config.setCodec(new JsonJacksonCodec());
         System.out.println("scores-connect-to-redis");
         if(redissonProperty.isCluster()){
             config.useClusterServers()
