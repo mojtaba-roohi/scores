@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.rajman.common.scores.config.RedissonConfig,org.rajman.common.scores.service.ScoreService
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=org.rajman.common.scores.config.RedissonConfig,org.rajman.common.scores.config.RabbitMQConfig,org.rajman.common.scores.service.ScoreService

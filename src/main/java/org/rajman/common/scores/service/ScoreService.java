@@ -5,7 +5,6 @@ import org.redisson.api.RedissonClient;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +16,7 @@ public class ScoreService {
     @Autowired
     public ScoreService(RedissonClient redissonClient, RabbitTemplate rabbitTemplate) {
         this.redissonClient = redissonClient;
-        this.rabbitTemplate=rabbitTemplate;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public Object getScore(Integer userId) {
