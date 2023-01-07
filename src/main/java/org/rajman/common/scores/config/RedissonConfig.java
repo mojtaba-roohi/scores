@@ -1,6 +1,6 @@
 package org.rajman.common.scores.config;
 
-import org.rajman.common.scores.model.RedissonProperty;
+import org.rajman.common.scores.model.RedissonProperties;
 import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
@@ -12,11 +12,11 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = "org.rajman.common.scores.config")
-public class Redisson {
+public class RedissonConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public RedissonClient Redisson(RedissonProperty redissonProperty){
+    public RedissonClient Redisson(RedissonProperties redissonProperty){
         Config config=new Config();
         config.setCodec(new JsonJacksonCodec());
         System.out.println("scores-connect-to-redis");
@@ -33,8 +33,8 @@ public class Redisson {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "scores-redis")
-    public RedissonProperty redissonProperty() {
-        return new RedissonProperty();
+    @ConfigurationProperties(prefix = "scores.redis")
+    public RedissonProperties redissonProperty() {
+        return new RedissonProperties();
     }
 }
