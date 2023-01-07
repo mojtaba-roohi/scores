@@ -31,10 +31,10 @@ public class ScoreService {
                 return map.get(userId);
             }
         } catch (AmqpException ex){
-            System.out.println("not connect to redisson ");
+//            System.out.println("not connect to redisson ");
         }
         catch (Exception ex) {
-            System.out.println("not connect to redisson ");
+//            System.out.println("not connect to redisson ");
         }
         return -1;
     }
