@@ -10,24 +10,25 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
+
 @Configuration
 @ComponentScan(basePackages = "org.rajman.common.scores.config")
 public class RedissonConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public RedissonClient Redisson(RedissonProperties redissonProperty){
-        Config config=new Config();
+    public RedissonClient Redisson(RedissonProperties redissonProperties) {
+        Config config = new Config();
         config.setCodec(new JsonJacksonCodec());
-        System.out.println("scores-connect-to-redis");
-        if(redissonProperty.isCluster()){
+        if (redissonProperties.isCluster()) {
             config.useClusterServers()
-                    .setPassword(redissonProperty.getPassword());
-//                     .setNodeAddresses();
-        } else{
-            config.useSingleServer().setAddress(redissonProperty.getAddress());
-            if( redissonProperty.getPassword()!=null)
-                config.useSingleServer().setPassword (redissonProperty.getPassword());
+                    .setPassword(redissonProperties.getPassword())
+                     .setNodeAddresses(Arrays.asList(redissonProperties.getAddress().split(",")));
+        } else {
+            config.useSingleServer().setAddress(redissonProperties.getAddress());
+            if (redissonProperties.getPassword() != null)
+                config.useSingleServer().setPassword(redissonProperties.getPassword());
         }
         return org.redisson.Redisson.create(config);
     }

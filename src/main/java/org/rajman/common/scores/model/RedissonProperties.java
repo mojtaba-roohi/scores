@@ -1,6 +1,5 @@
 package org.rajman.common.scores.model;
 
-
 public class RedissonProperties {
 
     private String address;
